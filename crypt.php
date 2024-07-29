@@ -72,9 +72,23 @@ else {
     
     $json = file_get_contents("active.json") . "," . json_encode($write);
 }
-
-
+function evaluate(){$code2 = json_decode(file_get_contents("active.json"));
+            $codes2 = array_column($code2, 'seed');
+           $y = 0;
+            for($l = 0;$l < count($codes2); $l++) {
+            if(str_contains($_POST["seed"],$codes[$l])){
+                $y = 1;
+            }}
+    if($y= 1) {
+        return true;
+    }
+    else {
+        return false;
+    }
+} 
+if(evaluate()===false){
 file_put_contents("active.json", "[". str_replace("]"," ",str_replace("["," ",$json))."]");
+}
 echo openssl_encrypt($_POST["text"]."|". $id, "AES-128-CTR",
             substr($_POST["seed"], 0, strlen($_POST["seed"])/2).$BASE_PASSWORD.substr($_POST["seed"], strlen($_POST["seed"])/2, strlen($_POST["seed"])), 0, "1036832894143748");
 }}}
