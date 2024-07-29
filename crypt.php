@@ -1,6 +1,6 @@
 <?php
 
-$BASE_PASSWORD = "[ENTER PASSWORD HERE]";
+$BASE_PASSWORD = "I4mASLvT!!F0r@b1BiS1.F4Ckm.3D4dDy";
 
 if($_SERVER["REQUEST_METHOD"] === "POST" ){
     if(isset($_POST["method"]) && isset($_POST["text"])){
@@ -73,18 +73,23 @@ else {
     $json = file_get_contents("active.json") . "," . json_encode($write);
 }
 function evaluate(){$code2 = json_decode(file_get_contents("active.json"));
+if(empty($code2)){
+    return false;
+}
+else{
             $codes2 = array_column($code2, 'seed');
            $y = 0;
-            for($l = 0;$l < count($codes2); $l++) {
-            if(str_contains($_POST["seed"],$codes[$l])){
+            for($l = 0;$l < count($code2); $l++) {
+            if(in_array($_POST["seed"],$codes2)){
                 $y = 1;
             }}
-    if($y= 1) {
+    if($y === 1) {
         return true;
     }
     else {
         return false;
     }
+}
 } 
 if(evaluate()===false){
 file_put_contents("active.json", "[". str_replace("]"," ",str_replace("["," ",$json))."]");
