@@ -1,6 +1,6 @@
 <?php
 
-$BASE_PASSWORD = "[ENTER PASS]";
+$BASE_PASSWORD = "[ENTER PASSWORD HERE]";
 
 if($_SERVER["REQUEST_METHOD"] === "POST" ){
     if(isset($_POST["method"]) && isset($_POST["text"])){
@@ -88,9 +88,12 @@ function evaluate(){$code2 = json_decode(file_get_contents("active.json"));
 } 
 if(evaluate()===false){
 file_put_contents("active.json", "[". str_replace("]"," ",str_replace("["," ",$json))."]");
-}
 echo openssl_encrypt($_POST["text"]."|". $id, "AES-128-CTR",
             substr($_POST["seed"], 0, strlen($_POST["seed"])/2).$BASE_PASSWORD.substr($_POST["seed"], strlen($_POST["seed"])/2, strlen($_POST["seed"])), 0, "1036832894143748");
+}
+else {
+    echo "Password in use, try again";
+}
 }}}
     
 if(isset($_POST["seed"]) && isset($_POST["link"])) {
