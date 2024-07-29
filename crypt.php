@@ -1,6 +1,6 @@
 <?php
 
-$BASE_PASSWORD = "I4mASLvT!!F0r@b1BiS1.F4Ckm.3D4dDy";
+$BASE_PASSWORD = "PASS HERE";
 
 if($_SERVER["REQUEST_METHOD"] === "POST" ){
     if(isset($_POST["method"]) && isset($_POST["text"])){
