@@ -4,7 +4,6 @@
     <title>Crypt Api</title>
     <link rel="icon" type="image/x-icon" href="classic.png">
     <style>
-      /* REPLACE THIS WITH YOUR OWN CSS FILES*/
         body {
             background-image:linear-gradient(black, #333333);
                 color: white;
@@ -43,8 +42,8 @@ if($_SERVER["REQUEST_METHOD"] && isset($_POST["user"]) && isset($_POST["pass"]))
     if($_POST["user"] == "admin" && $_POST["pass"] == "changeme"){
         $dcode = file_get_contents("thread.json");
         $decode = json_decode($dcode,true);
-        $link = array_column($decode, "link");
-        $seed = array_column($decode, "pass");
+        $link = array_column(array_reverse($decode), "link");
+        $seed = array_column(array_reverse($decode), "pass");
         for($i = 0; $i < count($link); $i++) {
             echo "<b>password: ".$seed[$i]." : ".$link[$i]."</b><br>";
             
