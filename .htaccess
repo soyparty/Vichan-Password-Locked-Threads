@@ -1,0 +1,8 @@
+RewriteEngine On
+ErrorDocument 403 /403.html
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} ^thread.json
+RewriteCond %{REQUEST_URI} ^active.json
+
+RewriteRule ^(.*)$ - [F,L]
