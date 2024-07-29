@@ -1,4 +1,4 @@
-// ANGELENO SPACING
+// REDDIT SPACING
 // This script will encrypt all of your messages if desired, and does so in a secure way.
 // Provided by Owner of Https://Soyja.cc/
 
