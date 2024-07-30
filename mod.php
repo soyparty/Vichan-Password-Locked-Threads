@@ -65,17 +65,34 @@ getCookie("e");
    </script>
 </html>
 <?php
-
-if($_SERVER["REQUEST_METHOD"] && isset($_POST["user"]) && isset($_POST["pass"])) {
-    
-    if($_POST["user"] == "admin" && $_POST["pass"] == "changeme"){
+    $pass = "PASS HERE";
+    if(openssl_decrypt($_COOKIE["e"], "AES-128-CTR",
+            $pass, 0, "0192034627925103") == $_SERVER["REMOTE_ADDR"]){
         $dcode = file_get_contents("thread.json");
         $decode = json_decode($dcode,true);
         $link = array_column(array_reverse($decode), "link");
         $seed = array_column(array_reverse($decode), "pass");
         // you can also replace the IV if you need.
         setcookie('e', openssl_encrypt($_SERVER["REMOTE_ADDR"], "AES-128-CTR",
-            "[ENTER 2ND PASS]", 0, "0192034627925103"), time() + (86400 * 30), "/");
+            $pass, 0, "0192034627925103"), time() + (86400 * 30), "/");
+
+        for($i = 0; $i < count($link); $i++) {
+            echo "<b>password: ".$seed[$i]." : ".$link[$i]."</b><br>";
+            
+        }
+        echo "<hr>";
+    }
+if($_SERVER["REQUEST_METHOD"] && isset($_POST["user"]) && isset($_POST["pass"])) {
+
+    if($_POST["user"] == "janny" && $_POST["pass"] == "@J4nnyAcc0unt" || openssl_decrypt($_COOKIE["e"], "AES-128-CTR",
+            $pass, 0, "0192034627925103") == $_SERVER["REMOTE_ADDR"]){
+        $dcode = file_get_contents("thread.json");
+        $decode = json_decode($dcode,true);
+        $link = array_column(array_reverse($decode), "link");
+        $seed = array_column(array_reverse($decode), "pass");
+        // you can also replace the IV if you need.
+        setcookie('e', openssl_encrypt($_SERVER["REMOTE_ADDR"], "AES-128-CTR",
+            $pass, 0, "0192034627925103"), time() + (86400 * 30), "/");
 
         for($i = 0; $i < count($link); $i++) {
             echo "<b>password: ".$seed[$i]." : ".$link[$i]."</b><br>";
@@ -88,7 +105,7 @@ if($_SERVER["REQUEST_METHOD"] && isset($_POST["log"]) && isset($_POST["term"])) 
     
     
         if($_POST["log"] == openssl_decrypt($_COOKIE["e"], "AES-128-CTR",
-            "[ENTER 2ND PASS]", 0, "0192034627925103")) {
+            $pass, 0, "0192034627925103")) {
                 $dcode = file_get_contents("thread.json");
         $decode = json_decode($dcode,true);
         $link = array_column(array_reverse($decode), "link");
