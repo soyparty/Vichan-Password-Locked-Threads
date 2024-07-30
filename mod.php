@@ -4,7 +4,7 @@ session_start();
 <html>
 
 <head>
-    <title>Encrypt Mod Portal</title>
+    <title>Crypt Api</title>
     <link rel="icon" type="image/x-icon" href="classic.png">
     <style>
         body {
@@ -87,14 +87,14 @@ if($_SERVER["REQUEST_METHOD"] && isset($_POST["user"]) && isset($_POST["pass"]))
 if($_SERVER["REQUEST_METHOD"] && isset($_POST["log"]) && isset($_POST["term"])) {
     
     
-        if($_POST["log"] = openssl_decrypt($_COOKIE["e"], "AES-128-CTR",
+        if($_POST["log"] == openssl_decrypt($_COOKIE["e"], "AES-128-CTR",
             "[ENTER 2ND PASS]", 0, "0192034627925103")) {
                 $dcode = file_get_contents("thread.json");
         $decode = json_decode($dcode,true);
         $link = array_column(array_reverse($decode), "link");
         $seed = array_column(array_reverse($decode), "pass");
         for($i = 0; $i < count($link); $i++) {
-            if($link[$i] = $_POST["term"]){
+            if($link[$i] == $_POST["term"]){
                 echo "<script>let p = document.createElement('p'); p.innerText = 'The password for that thread is: ".$seed[$i]."'; document.getElementById('result').appendChild(p);</script>";
             }
             
