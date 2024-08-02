@@ -81,6 +81,7 @@ body.value = data;
     });});}
 
 }
+
 if(localStorage.getItem("link") != window.location.href) {
 clientaddon();
 }
@@ -107,11 +108,12 @@ location.reload();
 }
 let e ="0" ;
 let x = "0";
+
 if(window.location.href.includes("/res/")) {
 
 
 let posts = document.getElementsByClassName("body");
-window.addEventListener('load', function () {
+
 
   body.addEventListener("change", function() {
 if(localStorage.getItem("link") == window.location.href) {
@@ -173,4 +175,4 @@ posts[i].appendChild(document.createElement("br"));
 posts[i].appendChild(small);
 }
 }
-});}
+};
