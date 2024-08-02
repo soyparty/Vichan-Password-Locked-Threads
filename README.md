@@ -14,6 +14,6 @@ Upon inputting their credentials, they will be given a list of ALL encrypted thr
 1. Download all files in this repo, add it to a folder called "crypt".
 2. Edit your BASE PASSWORD in the "crypt.php" file.
 3. Edit your MOD CREDENTIALS in the "mod.php" file.
-4. Add this script tag to your desired board: **<script src = '/crypt/client.js'></script>**
+4. Add this **$config['additional_javascript'][] = 'crypt/load.js';** to your config.php
 5. Tell your mods how to access encrypted threads.
 Now you are done! You now have PLT.
